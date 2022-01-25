@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Cookies from 'universal-cookie';
 
 export default function Aside() {
+  const cookies = new Cookies();
+  let getCookie = cookies.get('userBrainstorming');
+  const [userLogin, setUserLogin] = useState({});
+
+  useEffect(() => {
+    fetch(`/api/userEmail/${getCookie}`)
+      .then((respuesta) => {
+        return respuesta.json();
+      })
+      .then((data) => {
+          setUserLogin(data)
+      })
+      .catch((error) => console.log(error));
+}, []);
+
+
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       {/* Brand Logo */}
-      <a href="http://Localhost:4000/" className="brand-link">
+      <a href="http://Localhost:4000/home" className="brand-link">
         <img
           src="dist/img/Brainstorming_logo.png"
           alt="AdminLTE Logo"
@@ -19,14 +36,15 @@ export default function Aside() {
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <img
-              src="dist/img/user2-160x160.jpg"
+              src={`http://localhost:4000/img/users/${userLogin.avatar}`}
               className="img-circle elevation-2"
               alt="User Image"
+              style={{ "width": '30px'},{"height": '30px' }}
             />
           </div>
           <div className="info">
             <a href="#" className="d-block">
-              Alexander Pierce
+              {userLogin.fullName}
             </a>
           </div>
         </div>
@@ -64,51 +82,6 @@ export default function Aside() {
                   <i className="right fas fa-angle-left" />
                 </p>
               </a>
-            </li>
-            <li className="nav-item">
-              <a href="#" className="nav-link">
-                <i className="nav-icon fas fa-copy" />
-                <p>
-                  Layout Options
-                  <i className="fas fa-angle-left right" />
-                  <span className="badge badge-info right">6</span>
-                </p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="#" className="nav-link">
-                <i className="nav-icon fas fa-chart-pie" />
-                <p>
-                  Charts
-                  <i className="right fas fa-angle-left" />
-                </p>
-              </a>
-              <ul className="nav nav-treeview">
-                <li className="nav-item">
-                  <a href="pages/charts/chartjs.html" className="nav-link">
-                    <i className="far fa-circle nav-icon" />
-                    <p>ChartJS</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="pages/charts/flot.html" className="nav-link">
-                    <i className="far fa-circle nav-icon" />
-                    <p>Flot</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="pages/charts/inline.html" className="nav-link">
-                    <i className="far fa-circle nav-icon" />
-                    <p>Inline</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="pages/charts/uplot.html" className="nav-link">
-                    <i className="far fa-circle nav-icon" />
-                    <p>uPlot</p>
-                  </a>
-                </li>
-              </ul>
             </li>
           </ul>
         </nav>
