@@ -26,7 +26,7 @@ function ContentAllProducts () {
           })
           .then((data) => {
               setProducts(data.products);
-              setCantPage(data.products.length / 4);
+              setCantPage(Math.ceil(data.products.length / 4));
           })
           .catch((error) => console.log(error));
     }, []);
