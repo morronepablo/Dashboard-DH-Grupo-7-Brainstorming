@@ -6,9 +6,13 @@ import ContentLastProduct from './ContentLastProduct'
 function ContentCore () {
     return (
         <div className="content-wrapper">
-            <ContentTop />
+            <div className="row ml-1 mr-1">
+                <ContentTop />
+            </div>
             <ContentLastProduct />
-            <ContentAllProducts />
+            <div className="row ml-1 mr-1">
+                <ContentAllProducts />
+            </div>
         </div>
     )
 }

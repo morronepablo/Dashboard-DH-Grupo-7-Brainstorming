@@ -6,6 +6,7 @@ function ContentLastProduct () {
     const [product, setProduct] = useState({});
     const [lastProducts, setLastProducts] = useState(0);
     const [productLast, setProductLast] = useState(0);
+    const [productDiscount, setProductDiscount] = useState(0);
     const [imageLastProduct, setImageLastProduct] = useState('');
     let ultimoReg;
     useEffect(() => {
@@ -29,14 +30,15 @@ function ContentLastProduct () {
           })
           .then((data) => {
             setImageLastProduct(data.data.img);
+            setProductDiscount(data.data.discount);
           })
           .catch((error) => console.log(error));
     }, [productLast]);
 
     return (
-        <div className="row">
+        <div className="row ml-1 mr-1">
             {/*<!-- Last Movie in DB -->*/}
-            <LastProduct dataProduct = {product} dataImage = {imageLastProduct} />
+            <LastProduct dataProduct = {product} dataImage = {imageLastProduct} dataDiscount = {productDiscount} />
             {/*<!-- End content row last movie in Data Base -->*/}
 
             {/*<!-- Genres in DB -->*/}
