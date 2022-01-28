@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Products from "./Products";
 
 function ContentAllProducts () {
-    const [products, setProducts] = useState([]);
     const [productsPage, setProductsPage] = useState([]);
     const [cantPage, setCantPage] = useState(0);
     const [pageActual, setPageActual] = useState(1);
@@ -25,7 +24,6 @@ function ContentAllProducts () {
             return respuesta.json();
           })
           .then((data) => {
-              setProducts(data.products);
               setCantPage(Math.ceil(data.products.length / 4));
           })
           .catch((error) => console.log(error));
@@ -42,6 +40,7 @@ function ContentAllProducts () {
             .catch((error) => console.log(error));
         }, [pageActual]);
         
+    
     return (
         <React.Fragment>
                 {/*<!-- Categories in DB -->*/}

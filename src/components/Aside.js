@@ -7,15 +7,17 @@ export default function Aside() {
   const [userLogin, setUserLogin] = useState({});
 
   useEffect(() => {
-    fetch(`/api/userEmail/${getCookie}`)
-      .then((respuesta) => {
-        return respuesta.json();
-      })
-      .then((data) => {
-          setUserLogin(data)
-      })
-      .catch((error) => console.log(error));
-}, []);
+    if(getCookie !== undefined) {
+      fetch(`/api/userEmail/${getCookie}`)
+        .then((respuesta) => {
+          return respuesta.json();
+        })
+        .then((data) => {
+            setUserLogin(data)
+        })
+        .catch((error) => console.log(error));
+    }
+  }, []);
 
 
   return (
@@ -36,7 +38,7 @@ export default function Aside() {
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <img
-              src={`http://localhost:4000/img/users/${userLogin.avatar}`}
+              src={`http://localhost:4000/img/users/${userLogin.avatar ? userLogin.avatar : 'user_default.png'}`}
               className="img-circle elevation-2"
               alt="User Image"
               style={{ "width": '30px'},{"height": '30px' }}
