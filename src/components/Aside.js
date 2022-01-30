@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+
 import Cookies from 'universal-cookie';
 
 export default function Aside() {
@@ -77,13 +79,22 @@ export default function Aside() {
             {/* Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library */}
             <li className="nav-item menu-open">
-              <a href="#" className="nav-link active">
+              <Link to="/" className="nav-link bg-primary">
                 <i className="nav-icon fas fa-tachometer-alt" />
                 <p>
                   Dashboard
-                  <i className="right fas fa-angle-left" />
+                  <i className="right fas fa-angle-down" />
                 </p>
-              </a>
+              </Link>
+            </li>
+            <li className="nav-item menu-open">
+              <Link to="/allProducts" className="nav-link bg-warning">
+                <i className="nav-icon fas fa-boxes" />
+                <p>
+                  Todos los productos
+                  <i className="right fas fa-angle-down" />
+                </p>
+              </Link>
             </li>
           </ul>
         </nav>
