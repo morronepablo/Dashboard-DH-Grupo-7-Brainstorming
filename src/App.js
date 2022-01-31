@@ -1,8 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Aside from './components/Aside'
-import Content from './components/Content'
-import ContentAllProducts from './components/contentcore/ContentAllProducts'
 import ContentCore from './components/contentcore/ContentCore'
 import ContentDataTableProducts from './components/contentcore/ContentDataTableProducts'
 import Footer from './components/Footer'

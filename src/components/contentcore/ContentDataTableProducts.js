@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DataTable from 'react-data-table-component'
 
-// const tablaCampeones = [
-//     {id: 1, ano: "2000", campeon: "Real Madrid CF", subcampeon: "Valencia CF"},
-//     {id: 1, ano: "2001", campeon: "FC Bayern Munich", subcampeon: "Valencia CF"}
-// ];
-
 const columnas = [
     {
         name: 'ID',
@@ -54,19 +49,18 @@ const paginacionOpciones = {
 }
 
 function ContentDataTableProducts () {
-    const [tablaCampeones, setTablaCampeones] = useState([]);
+    const [tablaProducts, setTablaProducts] = useState([]);
     useEffect(() => {
         fetch("/api/products/datatable")
           .then((respuesta) => {
             return respuesta.json();
           })
           .then((data) => {
-            setTablaCampeones(data.products);
+            setTablaProducts(data.products);
           })
           .catch((error) => console.log(error));
     },[])
 
-    console.log("Holaaaaaaaaa", tablaCampeones);
     return (
         <div className="content-wrapper">
             <div className="row ml-1 mr-1 mt-4">
@@ -78,8 +72,8 @@ function ContentDataTableProducts () {
                         <div className="card-body table-responsive">
                             <DataTable 
                                 columns={columnas}
-                                data={tablaCampeones}
-                                title="Campeones UCL 2000-2020"
+                                data={tablaProducts}
+                                title="Listado general de productos"
                                 pagination
                                 paginationComponentOptions={paginacionOpciones}
                                 fixedHeader
