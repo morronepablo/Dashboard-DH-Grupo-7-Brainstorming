@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 
 export default function Aside() {
   const cookies = new Cookies();
-  let getCookie = cookies.get('userBrainstorming');
+  let getCookie = cookies.get("userBrainstorming");
   const [userLogin, setUserLogin] = useState({});
 
   useEffect(() => {
-    if(getCookie !== undefined) {
+    if (getCookie !== undefined) {
       fetch(`/api/userEmail/${getCookie}`)
         .then((respuesta) => {
           return respuesta.json();
         })
         .then((data) => {
-            setUserLogin(data)
+          setUserLogin(data);
         })
         .catch((error) => console.log(error));
     }
   }, []);
-
 
   return (
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
@@ -40,10 +39,12 @@ export default function Aside() {
         <div className="user-panel mt-3 pb-3 mb-3 d-flex">
           <div className="image">
             <img
-              src={`http://localhost:4000/img/users/${userLogin.avatar ? userLogin.avatar : 'user_default.png'}`}
+              src={`http://localhost:4000/img/users/${
+                userLogin.avatar ? userLogin.avatar : "user_default.png"
+              }`}
               className="img-circle elevation-2"
               alt="User Image"
-              style={{ "width": '30px'},{"height": '30px' }}
+              style={({ width: "30px" }, { height: "30px" })}
             />
           </div>
           <div className="info">

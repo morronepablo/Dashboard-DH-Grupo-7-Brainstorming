@@ -23,7 +23,7 @@ function ContentAllProducts() {
   };
 
   const handlePageFirst = () => {
-      setPageActual(1);
+    setPageActual(1);
   };
 
   useEffect(() => {

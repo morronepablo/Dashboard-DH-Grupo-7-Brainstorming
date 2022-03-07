@@ -1,9 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export default function Content() {
-    return (
-        <div className="content-wrapper">
-            Content
-        </div>
-    )
+  return <div className="content-wrapper">Content</div>;
 }
